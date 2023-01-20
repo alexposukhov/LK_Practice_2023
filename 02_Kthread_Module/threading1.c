@@ -72,4 +72,4 @@ module_exit(modExit);
 /*Module information*/
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("ME");
-MODULE_DESCRIPTION("Just a simple module");
+MODULE_DESCRIPTION("Just a thread module");

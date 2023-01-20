@@ -18,6 +18,7 @@ static void __exit modExit(void) {
 
 module_init(modInit);
 module_exit(modExit);
+
 /*Module information*/
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("ME");
