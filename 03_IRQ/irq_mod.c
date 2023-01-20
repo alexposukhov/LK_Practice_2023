@@ -1,5 +1,5 @@
-#define pr_fmt(fmt) "%s: " fmt,  KBUILD_MODNAME
 #include <linux/module.h>
+#include <linux/init.h>
 #include <linux/interrupt.h>
 
 #define INTERR 10  // default interrupt
@@ -19,7 +19,7 @@ static irqreturn_t my_interrupt(int irq, void* devid)
     return IRQ_NONE;
 }
 
-static int hello_init(void)
+static int __init hello_init(void)
 {
 	int res = 0;
     if (request_irq(irq, my_interrupt, IRQF_SHARED, "my_interr", &dev_id)) {
@@ -33,7 +33,7 @@ static int hello_init(void)
 	return res;
 }
 
-static void hello_exit(void)
+static void __exit hello_exit(void)
 {
     synchronize_irq(irq);
     free_irq(irq, &dev_id);

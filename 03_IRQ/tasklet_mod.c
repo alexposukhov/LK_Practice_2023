@@ -1,5 +1,5 @@
-#define pr_fmt(fmt) "%s: " fmt,  KBUILD_MODNAME
 #include <linux/module.h>
+#include <linux/init.h>
 #include <linux/interrupt.h>
 
 static cycles_t cycles1 = 0;
@@ -44,7 +44,7 @@ void my_tasklet_func_new(struct tasklet_struct *t)
 
 DECLARE_TASKLET(my_taskl_new, my_tasklet_func_new);
 
-static int hello_init(void)
+static int __init hello_init(void)
 {
 	int res = 0;
     context = in_atomic();
@@ -57,7 +57,7 @@ static int hello_init(void)
 	return res;
 }
 
-static void hello_exit(void)
+static void __exit hello_exit(void)
 {
     tasklet_kill(&my_taskl);
     tasklet_kill(&my_taskl_new);
